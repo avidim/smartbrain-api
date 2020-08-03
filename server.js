@@ -9,6 +9,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 const signUp = require('./controllers/signUp');
 const signIn = require('./controllers/signIn');
 const profile = require('./controllers/profile');

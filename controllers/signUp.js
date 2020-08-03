@@ -9,7 +9,6 @@ const handler = (req, res, db, bcrypt) => {
             .returning('email')
             .then(loginEmail => {
                 return trx('users')
-                    .returning('*')
                     .insert({
                         name: name,
                         email: loginEmail[0],
