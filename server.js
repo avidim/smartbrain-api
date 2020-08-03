@@ -24,7 +24,8 @@ const db = knex({
     }
 });
 
-app.get('/', (req, res) => db('users').select('*').then(users => res.json(users)));
+app.get('/', (req, res) => res.send('hello boy :)'));
+//app.get('/', (req, res) => db('users').select('*').then(users => res.json(users)));
 app.post('/signin', (req, res) => signIn.handler(req, res, db, bcrypt));
 app.post('/signup', (req, res) => signUp.handler(req, res, db, bcrypt));
 app.get(('/profile/:id'), (req, res) => profile.handler(req, res, db));
