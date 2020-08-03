@@ -31,4 +31,4 @@ app.get(('/profile/:id'), (req, res) => profile.handler(req, res, db));
 app.put('/image', (req, res) => image.handler(req, res, db));
 app.post('/imageurl', (req, res) => image.apiCall(req, res));
 
-app.listen(3003);
+app.listen(process.env.PORT);
