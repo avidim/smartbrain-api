@@ -6,6 +6,7 @@ const handler = (req, res, db, bcrypt) => {
             email: email,
             hash: hash
         })
+            .catch(err => res.status(400).json(err))
             .returning('email')
             .then(loginEmail => {
                 return trx('users')
