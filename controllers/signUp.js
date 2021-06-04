@@ -11,8 +11,8 @@ const handler = (req, res, db, bcrypt) => {
                 return trx('users')
                     .insert({
                         name: name,
-                        email: loginEmail[0],
-                        joined: new Date
+                        email: email,
+                        joined: new Date()
                     })
                     .then(response => res.status(200).send('success'))
             })

@@ -1,11 +1,12 @@
 const express = require('express');
+const body = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
 
 const app = express();
 
-app.use(express.json());
+app.use(body.json());
 app.use(cors());
 
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -16,12 +17,13 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const db = knex({
-    client: 'pg',
+    client: 'mysql',
     connection: {
-        host: 'localhost',
-        user: process.env.PGUSER,
-        password: process.env.PGPASS,
-        database: process.env.PGDB
+        host : 'localhost',
+        user : process.env.MSUSER,
+        password : process.env.MSPASS,
+        database : process.env.MSDB,
+        port: process.env.MSPORT
     },
     log: {
         warn(message) {
@@ -39,8 +41,7 @@ const db = knex({
     }
 });
 
-//app.get('/', (req, res) => res.send('hello boy :)'));
-//app.get('/', (req, res) => db('users').select('*').then(users => res.json(users)));
+app.post('/test', (req, res) => res.send('test is passed'));
 
 app.post('/signin', (req, res) => signIn.handler(req, res, db, bcrypt));
 app.post('/signup', (req, res) => signUp.handler(req, res, db, bcrypt));
@@ -48,4 +49,4 @@ app.get(('/profile/:id'), (req, res) => profile.handler(req, res, db));
 app.put('/image', (req, res) => image.handler(req, res, db));
 app.post('/imageurl', (req, res) => image.apiCall(req, res));
 
-app.listen(process.env.PGPORT, () => console.log(`Server is running on PORT ${process.env.PGPORT}`));
+app.listen(process.env.RUNPORT, () => console.log(`Server is running on PORT ${process.env.RUNPORT}`));

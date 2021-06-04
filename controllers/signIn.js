@@ -7,11 +7,11 @@ const handler = (req, res, db, bcrypt) => {
                 return db('users')
                     .select('*').where('email', '=', email)
                     .then(user => res.status(200).json(user[0]))
-                    .catch(err => res.status(404).send('404'));
+                    .catch(err => res.status(404).send('something get wrong with user extracting'));
             else
-                return res.status(404).send('404');
+                return res.status(404).send('password is incorrect');
         })
-        .catch(err => res.status(404).send('404'))
+        .catch(err => res.status(404).send('user not found'))
 };
 
 module.exports = {
