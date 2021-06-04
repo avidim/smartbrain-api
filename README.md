@@ -1,3 +1,3 @@
-# The backend of the SmartBrain app (may work slow, because server located at heroku)
+# The backend of the SmartBrain app
 
 # https://smartbrain.avidim.dev/
